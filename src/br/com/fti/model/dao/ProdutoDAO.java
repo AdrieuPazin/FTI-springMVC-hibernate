@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import br.com.fti.model.entities.Cliente;
 import br.com.fti.model.entities.Produto;
 
 public class ProdutoDAO {
@@ -18,6 +19,7 @@ public class ProdutoDAO {
 	public String adicionaProduto(Produto p) {
 		
 		try {
+				
 			mananger.getTransaction().begin();;
 			mananger.persist(p);
 			mananger.getTransaction().commit();

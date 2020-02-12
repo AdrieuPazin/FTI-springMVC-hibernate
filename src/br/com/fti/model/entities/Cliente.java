@@ -38,9 +38,9 @@ public class Cliente {
 	
 	private String senhaCliente;
 	
-//	@OneToMany(mappedBy = "clientes", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	private List<Produto> listaProduto;
-//	
+	@OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Produto> listaProduto;
+	
 	
 	public Cliente() {}
 	
@@ -129,13 +129,13 @@ public class Cliente {
 		this.senhaCliente = senhaCliente;
 	}
 
-//	public List<Produto> getListaProduto() {
-//		return listaProduto;
-//	}
-//
-//	public void setListaProduto(List<Produto> listaProduto) {
-//		this.listaProduto = listaProduto;
-//	}
+	public List<Produto> getListaProduto() {
+		return listaProduto;
+	}
+
+	public void setListaProduto(List<Produto> listaProduto) {
+		this.listaProduto = listaProduto;
+	}
 
 	@Override
 	public String toString() {

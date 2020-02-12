@@ -33,9 +33,9 @@ public class Produto {
 	@Column(nullable = false)
 	private String fotoProduto;
 	
-//	@ManyToOne
-//	@JoinColumn(name="fk_cod_cliente")
-//	private Cliente cliente;
+	@ManyToOne
+	@JoinColumn(name="clientes_fk", referencedColumnName = "id", nullable = false)
+	private Cliente cliente;
 	
 	public Produto() {}
 	
@@ -107,14 +107,14 @@ public class Produto {
 		this.fotoProduto = fotoProduto;
 	}
 
-//	public Cliente getCliente() {
-//		return cliente;
-//	}
-//
-//	public void setCliente(Cliente cliente) {
-//		this.cliente = cliente;
-//	}
-//	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
 	
 
 }

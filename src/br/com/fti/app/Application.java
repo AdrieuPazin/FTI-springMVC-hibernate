@@ -2,6 +2,7 @@ package br.com.fti.app;
 
 import java.text.ParseException;
 
+import br.com.fti.model.dao.ClienteDAO;
 import br.com.fti.model.dao.ProdutoDAO;
 import br.com.fti.model.entities.Produto;
 
@@ -35,13 +36,30 @@ public class Application {
 //		}
 //		
 		
+//		
+//		ProdutoDAO produtoDAO = new ProdutoDAO();
+//		Produto p = produtoDAO.carregaProduto(2L);
+//		
+//		System.out.println(p.getNomeProduto() +" " + p.getDescricaoProduto());
+//		
+//		produtoDAO.deletaProduto(12);
 		
-		ProdutoDAO produtoDAO = new ProdutoDAO();
-		Produto p = produtoDAO.carregaProduto(2L);
 		
-		System.out.println(p.getNomeProduto() +" " + p.getDescricaoProduto());
+		Produto p = new Produto();
+		ClienteDAO clienteDAO = new ClienteDAO();
 		
-		produtoDAO.deletaProduto(12);
+		p.setCliente(clienteDAO.carregaCliente(1));
+		p.setDescricaoProduto("descrição produto");
+		p.setEstadoProduto("N");
+		p.setFotoProduto("1");
+		p.setNomeProduto("produto 1");
+		p.setValorProduto(1);
+		
+		ProdutoDAO pDAO = new ProdutoDAO();
+		pDAO.adicionaProduto(p);
+		
+		
+		
 		
 	}
 

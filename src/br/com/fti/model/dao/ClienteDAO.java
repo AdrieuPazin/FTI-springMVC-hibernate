@@ -34,6 +34,25 @@ public class ClienteDAO {
 		return "add";
 	}
 
+		public Cliente carregaCliente(long id) {
+			
+			Cliente c = new Cliente();
+			try {
+				Query query = mananger.createQuery("SELECT c FROM Cliente as c WHERE c.id=:id");
+				query.setParameter("id", id);			
+			     c = (Cliente) query.getSingleResult();
+			     
+			} catch (Exception e) {
+				e.getMessage();
+			} finally {
+				mananger.close();
+				factory.close();
+			}
+
+			return c;	
+			
+		}
+		
 	public String atualizaCliente(Cliente c) {
 
 		try {
@@ -52,23 +71,23 @@ public class ClienteDAO {
 
 	}
 
-	public boolean validaCliente(Cliente c) {
+	public Cliente validaCliente(Cliente c) {
 
 		
 		try {
 
 			Query query = mananger.createQuery(
-					"SELECT nomeCliente FROM Cliente WHERE emailCliente = :paramEmail AND senhaCliente = :paramSenha ");
+					"SELECT c FROM Cliente c WHERE c.emailCliente = :paramEmail AND c.senhaCliente = :paramSenha ");
 			query.setParameter("paramEmail", c.getEmailCliente());
 			query.setParameter("paramSenha", c.getSenhaCliente());
 
 			if (query.getSingleResult() != null) {				
-				return true;
+				return c = (Cliente) query.getSingleResult();
 			} else {
-				return false;
+				return null;
 			}
 		} catch (NoResultException e) {
-			return false;
+			return null;
 		} finally {
 			mananger.close();
 			factory.close();
@@ -82,7 +101,7 @@ public class ClienteDAO {
 	
 		try {
 			
-			Query query = mananger.createQuery("SELECT * FROM clientes");	
+			Query query = mananger.createQuery("SELECT c FROM Cliente c");	
 			list = query.getResultList();
 			
 		}  catch (Exception e) {

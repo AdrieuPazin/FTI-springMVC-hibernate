@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.fti.model.dao.ClienteDAO;
 import br.com.fti.model.dao.ProdutoDAO;
+import br.com.fti.model.entities.Cliente;
 import br.com.fti.model.entities.Produto;
 
 @Controller
@@ -65,10 +67,13 @@ public class ProdutoController {
 	}
 
 	@RequestMapping("addProduto")
-	public String adiciona(Produto produto) {
+	public String adiciona(@RequestParam(value="idCliente") int id, Produto p) {
 				
 		ProdutoDAO produtoDAO = new ProdutoDAO();
-		if (produtoDAO.adicionaProduto(produto).equals("add")) {
+		ClienteDAO clienteDAO = new ClienteDAO();
+		p.setCliente(clienteDAO.carregaCliente(id));
+		
+		if (produtoDAO.adicionaProduto(p).equals("add")) {
 			return "ProdutoAdd";	
 		} else {
 			return "Erro ao adicionar produto";

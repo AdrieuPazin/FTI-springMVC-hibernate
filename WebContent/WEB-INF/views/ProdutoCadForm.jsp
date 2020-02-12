@@ -13,12 +13,12 @@
 
  <div class="container">
  <%
- 	
+ 	Cliente cli = (Cliente) session.getAttribute("usuarioLogado");
  	Produto p = (Produto) request.getAttribute("produtoCarregado");
-	if(p==null){
+	
 %>
-		<h2 class="text-center">Cadastrar Produto</h2>
-	<form name="formCadProduto" action="addProduto" method="POST" onsubmit="return validarDadosProutos()? true: false">				
+		<h2 class="text-center">Cadastrar Produto-<%=cli.getId()%>-</h2>
+	<form name="formCadProduto" action="addProduto?idCliente=<%=cli.getId()%>" method="POST" onsubmit="return validarDadosProutos()? true: false">				
 				  <div class="form-group">
 				    <label >Nome do Produto:</label>
 				    <input type="text" class="form-control" id="nomeProduto" name = "nomeProduto" placeholder="Informe o nome do produto" required >
@@ -49,77 +49,10 @@
 				  <div class="form-group">
 				    <label >Foto</label>
 				    <input type="text" class="form-control" id="fotoProduto" name="fotoProduto" placeholder="Selecione sua foto" required >
-				    <input type="text" class="form-control" id="fotoProduto" name="cliente" hidden value="<%=session.getAttribute("usuarioLogado")%>"> 
 				  </div>
 				  <input class="btn btn-primary" id="btnCad" type="submit" value="Cadastrar"></input>
 		</form>
-<%	
-	} else {
-		
-%>
-		<h2 class="text-center">Atualizar Produto</h2>
-	<form name="formCadProduto" action="edtProduto" method="POST" onsubmit="return validarDadosProutos()? true: false">				
-				  <div class="form-group">
-				    <label >Nome do Produto:</label>
-				    <input type="text" class="form-control" id="nomeProduto" name = "nomeProduto" placeholder="Informe o nome do produto" value="<%=p.getNomeProduto()%>" required >
-				  </div>
-				  <div class="form-group">
-				    <label >Descrição do Produto</label>
-				    <textarea rows="5" cols="100" class="form-control" id="descricaoProduto" name="descricaoProduto" placeholder="Descrição..." required><%=p.getDescricaoProduto()%></textarea>
-				  </div>
-				  <div class="form-group">
-				    <label >Estado do Produto</label>
-				    <%
-				    	if(p.getEstadoProduto().equals("N")){
-				    	
-				    %>
-				    	<div class="form-check form-check-inline">
-						  <input class="form-check-input estadoProduto" type="radio" name="estadoProduto" value="N" checked>
-						  <label class="form-check-label" for="inlineRadio1">Novo</label>
-						</div>
-						<div class="form-check form-check-inline">
-						  <input class="form-check-input estadoProduto" type="radio" name="estadoProduto" value="U">
-						  <label class="form-check-label" for="inlineRadio2">Usado</label>
-						</div>
-				  		
-				    
-				   <%
-				    	} else{
-				    		
-				    %>		
-				    	<div class="form-check form-check-inline">
-						  <input class="form-check-input estadoProduto" type="radio" name="estadoProduto" value="N" >
-						  <label class="form-check-label" for="inlineRadio1">Novo</label>
-						</div>
-						<div class="form-check form-check-inline">
-						  <input class="form-check-input estadoProduto" type="radio" name="estadoProduto" value="U" checked>
-						  <label class="form-check-label" for="inlineRadio2">Usado</label>
-						</div>
-				    <%	
-				    	}
-				    %>
-				    </div>
-				  <div class="form-group" id="exibeEstado">
-				    <label >Estado de Conservação:</label>
-				  <textarea rows="5" cols="100"  class="form-control" id="estadoConservacaoProduto" name="estadoConservacaoProduto" placeholder="Descreva a situação do produto" ><%=p.getEstadoConservacaoProduto()%></textarea>
-				  </div>
-				  <div class="form-group">
-				    <label >Valor do Produto:</label>					       
-					<input type="text" class="form-control" id="valorProduto" name = "valorProduto" placeholder="Informe o valor do produto" value="<%=p.getValorProduto()%>" required> 					
-				 </div>
-				  <div class="form-group">
-				    <label >Foto</label>
-				    <input type="text" class="form-control" id="fotoProduto" name="fotoProduto" placeholder="Selecione sua foto" value="<%=p.getFotoProduto()%>"required >
-				    <input type="text" class="form-control" id="fotoProduto" name="cliente" hidden value="<%=session.getAttribute("usuarioLogado")%>"> 
-				  </div>
-				  <input class="btn btn-primary" id="btnCad" type="submit" value="Atualizar"></input>
-		</form>
 
-<%		
-	}
- 
- %>
-	
 </div>
 <%@include file="/resources/util/footer.jsp" %>
 

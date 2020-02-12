@@ -31,14 +31,15 @@ public class ClienteController {
 	public String valLogin(Cliente cliente, HttpSession session, Model model) {
 		
 		ClienteDAO clienteDAO = new ClienteDAO();
-		if (clienteDAO.validaCliente(cliente)) {
-            session.setAttribute("usuarioLogado", cliente);
+		Cliente c = clienteDAO.validaCliente(cliente);
+		if (c != null) {
+            session.setAttribute("usuarioLogado", c);
 
             return "redirect:carregaProdutos";	
 		} else {
 			String erro = "erro";
 			model.addAttribute("erroLogin", erro);
-			return "redirect:/";
+			return "Login";
 		}		
 	}
 	

@@ -26,6 +26,7 @@
 						<th scope="col">Estado de Conservação</th>
 						<th scope="col">Valor</th>
 						<th scope="col">Foto</th>
+						<th scope="col">Inserido Por</th>
 						<th scope="col"></th>
 						<th scope="col"> 
 								<a href="formProduto" class="btn btn-primary " role="button" aria-pressed="true">Inserir Produto</a>
@@ -60,6 +61,9 @@
 					</td>
 					<td>
 						<%=p.getFotoProduto()%>
+					</td>
+					<td>
+						<%=p.getCliente().getNomeCliente()%>
 					</td>
 					<td>
 						<a href="carregaProdutoEdt?id=<%=p.getId()%>" class="btn btn-warning " role="button" aria-pressed="true">Editar</a>
