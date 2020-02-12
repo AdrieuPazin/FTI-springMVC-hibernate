@@ -17,7 +17,7 @@
  	Produto p = (Produto) request.getAttribute("produtoCarregado");
 	
 %>
-		<h2 class="text-center">Cadastrar Produto-<%=cli.getId()%>-</h2>
+		<h2 class="text-center">Cadastrar Produto</h2>
 	<form name="formCadProduto" action="addProduto?idCliente=<%=cli.getId()%>" method="POST" onsubmit="return validarDadosProutos()? true: false">				
 				  <div class="form-group">
 				    <label >Nome do Produto:</label>

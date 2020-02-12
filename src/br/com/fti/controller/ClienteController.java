@@ -58,7 +58,7 @@ public class ClienteController {
 				
 		ClienteDAO clienteDAO = new ClienteDAO();
 		if (clienteDAO.adicionaCliente(cliente).equals("add")) {
-			return "redirect:carregaProdutos";	
+			return "ClienteAdd";	
 		} else {
 			return "Erro ao adicionar cliente";
 		}

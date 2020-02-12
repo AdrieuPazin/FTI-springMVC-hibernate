@@ -22,7 +22,7 @@
  <div class="container">
 
 	<h2 class="text-center">Cadastrar Cliente</h2>
-	<form name="formCadCliente"action="addCliente" method="POST" onsubmit="return validarDadosCliente()? true: false">				
+	<form name="formCadNovoCliente"action="addCliente" method="POST" onsubmit="return validarDadosCliente()? true: false">				
 				  <div class="form-group">
 				    <label >Nome:</label>
 				    <input type="text" class="form-control" id="nomeCliente" name = "nomeCliente" placeholder="Informe seu nome" required >
