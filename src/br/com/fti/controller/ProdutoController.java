@@ -48,9 +48,12 @@ public class ProdutoController {
 	
 	
 	@RequestMapping("edtProduto")
-	public String edtProduto(@RequestParam(value="id") int id, Produto p) {
+	public String edtProduto(@RequestParam(value="id") int id, @RequestParam(value="idCliente") int idCliente, Produto p) {
 		ProdutoDAO produtoDAO = new ProdutoDAO();
-		p.setId((long) id);
+		ClienteDAO clienteDAO = new ClienteDAO();
+		
+		p.setId((long) id);		
+		p.setCliente(clienteDAO.carregaCliente(idCliente));
 		produtoDAO.atualizaProduto(p);		
 		
 		return "redirect:carregaProdutos";
@@ -74,7 +77,7 @@ public class ProdutoController {
 		p.setCliente(clienteDAO.carregaCliente(id));
 		
 		if (produtoDAO.adicionaProduto(p).equals("add")) {
-			return "ProdutoAdd";	
+			return "redirect:carregaProdutos";	
 		} else {
 			return "Erro ao adicionar produto";
 		}

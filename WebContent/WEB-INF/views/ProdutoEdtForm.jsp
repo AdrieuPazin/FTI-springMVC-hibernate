@@ -21,7 +21,7 @@
 		%>
 
 		<h2 class="text-center">Atualizar Produto</h2>
-		<form name="formCadProduto" action="edtProduto?id=<%=p.getId()%>" method="POST"
+		<form name="formEdtProduto" action="edtProduto?id=<%=p.getId()%>&idCliente=<%=c.getId()%>" method="POST"
 			onsubmit="return validarDadosProutos()? true: false">
 			<div class="form-group">
 				<label>Nome do Produto:</label> <input type="text"
